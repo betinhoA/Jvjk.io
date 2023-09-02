@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Carrinho de Compras</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+    <ul id="produtos">
+        <li>
+            <span>Item 1 - $10</span>
+            <button onclick="adicionarAoCarrinho('Item 1', 10)">Adicionar ao Carrinho</button>
+        </li>
+        <li>
+            <span>Item 2 - $20</span>
+            <button onclick="adicionarAoCarrinho('Item 2', 20)">Adicionar ao Carrinho</button>
+        </li>
+    </ul>
+
+    <h1>Carrinho de Compras</h1>
+    <ul id="carrinho">
+        <!-- Itens do carrinho serão exibidos aqui -->
+    </ul>
+
+    <h2>Total: $<span id="total">0</span></h2>
+
+    <script src="script.js">
+    let carrinho = [];
+
+function adicionarAoCarrinho(nome, preco) {
+    carrinho.push({ nome, preco });
+    atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+    const carrinhoUl = document.getElementById("carrinho");
+    const totalSpan = document.getElementById("total");
+
+    carrinhoUl.innerHTML = "";
+    let total = 0;
+
+    carrinho.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nome} - $${item.preco}`;
+        carrinhoUl.appendChild(li);
+
+        total += item.preco;
+    });
+
+    totalSpan.textContent = total.toFixed(2);
+}
+
+    
+    </script>
+</body>
+</html>
